@@ -1,0 +1,47 @@
+body, html {
+    height: 100%;
+}
+  
+.bg {
+    background-image: url("./images/SCSU_recolored.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: fit-content;
+}
+
+.header {
+    padding-top: 2%;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.subheader {
+    text-align: center;
+    color: whitesmoke;
+}
+
+.player1 {
+    text-align: center;
+    color: whitesmoke;
+}
+
+.player2 {
+    text-align: center;
+    color: whitesmoke;
+}
+
+.full-background {
+    background-image: url('./images/SCSU_recolored.jpg'); /* Path to your image */
+    background-size: cover;  /* Make the image cover the entire container */
+    background-position: center;  /* Center the image */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    width: 100%; /* Full width */
+    height: 100vh; /* Full height of the viewport */
+    display: flex; /* Flexbox to center content */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center the text inside */
+}

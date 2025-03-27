@@ -3,17 +3,86 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap demo</title>
+        <title>The Game of Nim</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="./assets/style.css">
     </head>
 <body>
-    <div class="container text-center">
+<div class="bg">
+    <nav class="navbar " style="background-color: rgb(0, 51, 153);">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <img src="./assets/images/scsu-logo.png" alt="SCSU_logo" width="auto" height="50">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" style="background-color: whitesmoke;">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Game Actions</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Set Player 1 Name:</a>
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Enter Name Here" aria-label="EnterName">
+                    <button class="btn btn-outline-primary" type="submit">Enter</button>
+                  </form>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Set Player 2 Name:</a>
+                    <form class="d-flex" role="search">
+                      <input class="form-control me-2" type="search" placeholder="Enter Name Here" aria-label="EnterName">
+                      <button class="btn btn-outline-primary" type="submit">Enter</button>
+                    </form>
+                  </li>
+                <li class="nav-item">
+                  <br>
+                  <button class="btn btn-outline-primary" type="submit">Reset Game</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="header">Welcome to the Game of Nim P2P Web Application</h1>
+        <h3 class="subheader">Hosted by SCSU Computer Science Department</h3>
+    </div>
+    <!-- <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Welcome!
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              How to Play
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+      </div> -->
+    <br>
+    <div class="container text-center" id="game_of_nim">
         <div class="row justify-content-md-center" id="first_row">
           <div class="col-md-auto">
             <div class="card" style="width: 10rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                </div>
+                <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r1c1">
             </div>
           </div>
         </div>
@@ -21,23 +90,17 @@
         <div class="row justify-content-md-center" id="second_row">
             <div class="col-md-auto">
               <div class="card" style="width: 10rem;">
-                  <img src="..." class="card-img-top" alt="...">
-                  <div class="card-body">
-                  </div>
+                  <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r2c1">
               </div>
             </div>
             <div class="col-md-auto">
               <div class="card" style="width: 10rem;">
-                  <img src="..." class="card-img-top" alt="...">
-                  <div class="card-body">
-                  </div>
+                  <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r2c2">
               </div>
             </div>
             <div class="col-md-auto">
               <div class="card" style="width: 10rem;">
-                  <img src="..." class="card-img-top" alt="...">
-                  <div class="card-body">
-                  </div>
+                  <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r2c3">
               </div>
             </div>
           </div>
@@ -45,37 +108,27 @@
           <div class="row justify-content-md-center" id="third_row">
             <div class="col-md-auto">
               <div class="card" style="width: 10rem;">
-                  <img src="..." class="card-img-top" alt="...">
-                  <div class="card-body">
-                  </div>
+                  <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r3c1">
               </div>
             </div>
             <div class="col-md-auto">
               <div class="card" style="width: 10rem;">
-                  <img src="..." class="card-img-top" alt="...">
-                  <div class="card-body">
-                  </div>
+                  <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r3c2">
               </div>
             </div>
             <div class="col-md-auto">
               <div class="card" style="width: 10rem;">
-                  <img src="..." class="card-img-top" alt="...">
-                  <div class="card-body">
-                  </div>
+                  <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r3c3">
               </div>
             </div>
             <div class="col-md-auto">
                 <div class="card" style="width: 10rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                    </div>
+                    <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r3c4">
                 </div>
             </div>
             <div class="col-md-auto">
                 <div class="card" style="width: 10rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                    </div>
+                    <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r3c5">
                 </div>
             </div>
           </div>
@@ -83,54 +136,57 @@
           <div class="row justify-content-md-center" id="fourth_row">
             <div class="col-md-auto">
               <div class="card" style="width: 10rem;">
-                  <img src="..." class="card-img-top" alt="...">
-                  <div class="card-body">
-                  </div>
+                  <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r5c1">
               </div>
             </div>
             <div class="col-md-auto">
               <div class="card" style="width: 10rem;">
-                  <img src="..." class="card-img-top" alt="...">
-                  <div class="card-body">
-                  </div>
+                  <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r5c2">
               </div>
             </div>
             <div class="col-md-auto">
               <div class="card" style="width: 10rem;">
-                  <img src="..." class="card-img-top" alt="...">
-                  <div class="card-body">
-                  </div>
+                  <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r5c3">
               </div>
             </div>
             <div class="col-md-auto">
                 <div class="card" style="width: 10rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                    </div>
+                    <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r5c4">
                 </div>
               </div>
               <div class="col-md-auto">
                 <div class="card" style="width: 10rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                    </div>
+                    <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r5c5">
                 </div>
               </div>
               <div class="col-md-auto">
                 <div class="card" style="width: 10rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                    </div>
+                    <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r5c6">
                 </div>
               </div>
               <div class="col-md-auto">
                 <div class="card" style="width: 10rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                    </div>
+                    <img src="./assets/images/scsu_cs_dept.jpg" class="card-img" alt="r5c7">
                 </div>
               </div>
+         </div>
+    </div>
+    <br>
+    <div class="container">
+        <button type="button" class="btn btn-primary mx-auto d-block">Submit Selection</button>
+    </div>
+    <div class="container text-center" id="player_info">
+        <div class="row d-flex justify-content-between" id="players">
+          <div class="col-md-auto" id="first_player">
+            <h1 class="player1">Player 1</h1>
           </div>
-      </div>
+          <div class="col-md-auto" id="second_player">
+            <h1 class="player2">Player 2</h1>
+          </div>
+        </div>
+    </div>
+</div>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>
