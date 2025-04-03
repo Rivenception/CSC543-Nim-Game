@@ -4,11 +4,12 @@ body, html {
   
 .bg {
     background-image: url("./images/SCSU_recolored.jpg");
-    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: fit-content;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
 }
 
 .header {
@@ -32,16 +33,15 @@ body, html {
     color: whitesmoke;
 }
 
-.full-background {
-    background-image: url('./images/SCSU_recolored.jpg'); /* Path to your image */
-    background-size: cover;  /* Make the image cover the entire container */
-    background-position: center;  /* Center the image */
-    background-repeat: no-repeat; /* Prevent image repetition */
-    width: 100%; /* Full width */
-    height: 100vh; /* Full height of the viewport */
-    display: flex; /* Flexbox to center content */
-    flex-direction: column; /* Stack content vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    text-align: center; /* Center the text inside */
+.card {
+    background-color: whitesmoke;
+    transition: box-shadow 0.1s ease;
+}
+
+.card:not(.shadow):hover {
+    box-shadow: 0 0 10px 10px lightblue;
+}
+
+.card.shadow {
+    box-shadow: 0 0 10px 10px lightblue !important;
 }
