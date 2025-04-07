@@ -15,4 +15,7 @@
 ## Thoughts
 - Consider a js DOM as a stretch goal\(server-side html struct)
 - Think about game state data structure \(int\[] for count of cards in row, maybe something else would be better?)
-    - Win state is all zeros? 
+    - Win state is all zeros?
+ 
+- Add a sign up / sign in page
+- Add a score page
