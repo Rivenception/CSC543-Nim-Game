@@ -39,7 +39,7 @@ export class NimGame {
       || !row === undefined
       || !amount
     ) {
-      throw new Error(`Invalid Move: Cannot remove ${amount} from ${this.game[row]} in row ${row}`);
+      throw new Error(`Invalid Move: Cannot remove ${amount} from ${this.#game[row]} in row ${row}`);
     }
     this.#game[row] -= amount;
     this.#moves++;
@@ -65,4 +65,4 @@ const moves = [[0,1], [1,3], [2,5], [3,7]];
 moves.map(m => nim.move(m[0], m[1]));
 console.log(nim.state);
 console.log(nim.ended, nim.moves, nim.winner);
-*/
+8?
