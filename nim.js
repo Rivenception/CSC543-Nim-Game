@@ -65,4 +65,4 @@ const moves = [[0,1], [1,3], [2,5], [3,7]];
 moves.map(m => nim.move(m[0], m[1]));
 console.log(nim.state);
 console.log(nim.ended, nim.moves, nim.winner);
-8?
+*/
