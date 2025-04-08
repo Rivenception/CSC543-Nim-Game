@@ -36,7 +36,7 @@ export class NimGame {
     if (
       row > this.#game.length
       || amount > this.#game[row]
-      || !row === undefined
+      || row === undefined
       || !amount
     ) {
       throw new Error(`Invalid Move: Cannot remove ${amount} from ${this.#game[row]} in row ${row}`);
