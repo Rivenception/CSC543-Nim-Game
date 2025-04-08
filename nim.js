@@ -13,7 +13,7 @@ export class NimGame {
     return this.#game.every(i => i === 0);
   }
 
-  // Determines if player 0 or player 1 wins
+  // Determines if player 0 or player 1 wins, after checking if game ended
   get winner() {
     if (this.ended){
       return this.#moves % 2;
@@ -33,6 +33,7 @@ export class NimGame {
 
   // This is zero indexed
   move(row, amount) {
+    // row === undefined only catches undefined, !amount catches all falsey values
     if (
       row > this.#game.length
       || amount > this.#game[row]
