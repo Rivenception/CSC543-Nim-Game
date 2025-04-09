@@ -1,0 +1,1 @@
+submitting a get request to this file should return a 415 error

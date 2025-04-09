@@ -1,0 +1,15 @@
+{
+  "name": "csc543-nim-game",
+  "version": "0.0.1",
+  "description": "- Cards glow when hovered over\r - Turns are counted and displayed on the page\r - Button to submit the card selection and pass the turn\r - An option to bring up an element with instructions\r     - A video/gif demo of how to play, to be included with instructions\r - A reset game button\r - A front-end script to manage the page\r - A separate module to manage the game state, could be front or back end\r - An app.js to manage the server-side routing. Will return the landing game page",
+  "main": "server.js",
+  "scripts": {
+    "test": "\\",
+    "start": "nodemon ./server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

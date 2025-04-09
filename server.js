@@ -1,23 +1,23 @@
 // This file does just URL routing and POST body parsing
 // All functionality related to responses and serving should go in stat.js or ajax.js for static or ajax responses respectively
 
-const http = require('http');
-const url = require('url');
+const http = require("http");
+const url = require("url");
 
-const staticServe = require('./stat.js');
-const ajaxServe = require('./ajax.js');
+const staticServe = require("./stat.js");
+const ajaxServe = require("./ajax.js");
 
 //Parse the URL and decide if req is AJAX
-//AJAX goes by POST, 
-function serverParse (req, res) {
+//AJAX goes by POST,
+function serverParse(req, res) {
   console.log(`${req.method} Request received: ${req.url}`);
-  let urlObj = url.parse(req.url)
+  let urlObj = url.parse(req.url);
   switch (req.method) {
-    case 'POST':
+    case "POST":
       handleAjax(urlObj, req, res);
       break;
-    
-    case 'GET':
+
+    case "GET":
       handlePage(urlObj, res);
       break;
 
@@ -28,16 +28,28 @@ function serverParse (req, res) {
 }
 
 //Does url switching for static pages
-function handlePage (url, res) {
-  switch (url.pathname) {
-    case '/leaderboard':
+function handlePage(url, res) {
+  switch (url.pathname.split("/")[1]) {
+    case "leaderboard":
       staticServe.leaderboard(url, res);
       break;
 
-    case '/home':
-    case '/':
-    case '/index':
+    case "home":
+      break;
+
+    case "":
+      break;
+
+    case "index":
       staticServe.home(url, res);
+      break;
+
+    case "login":
+      staticServe.login(url, res);
+      break;
+
+    case "assets":
+      staticServe.assets(url, res);
       break;
 
     default:
@@ -47,19 +59,19 @@ function handlePage (url, res) {
 
 //Does url switching for AJAX backend handlers
 //Stores data from POST body in req.body
-function handleAjax (url, req, res) {
-  let body = '';
-  req.on('data', block => body += block);
-  req.on('end', () => {
+function handleAjax(url, req, res) {
+  let body = "";
+  req.on("data", (block) => (body += block));
+  req.on("end", () => {
     console.log(`  Got data: ${body}`);
-   
+
     switch (url.pathname) {
-      case '/home':
-        ajaxServe.home();
+      case "/home":
+        ajaxServe.home(body, res);
         break;
-      
-      case '/leaderboard':
-        ajaxServe.leaderboard();
+
+      case "/leaderboard":
+        ajaxServe.leaderboard(body, res);
         break;
 
       default:
@@ -69,4 +81,6 @@ function handleAjax (url, req, res) {
   });
 }
 
-http.createServer(serverParse).listen(80, () => console.log("Started Server: Listening on port 80"));
+http
+  .createServer(serverParse)
+  .listen(80, () => console.log("Started Server: Listening on port 80"));
