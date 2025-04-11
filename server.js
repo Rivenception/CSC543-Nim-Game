@@ -34,12 +34,9 @@ function handlePage(url, res) {
       staticServe.leaderboard(url, res);
       break;
 
+    //logically equivalent default pathnames fallthrough cases
     case "home":
-      break;
-
     case "":
-      break;
-
     case "index":
       staticServe.home(url, res);
       break;
@@ -54,6 +51,7 @@ function handlePage(url, res) {
 
     default:
       staticServe.fof(url, res);
+      break;
   }
 }
 
