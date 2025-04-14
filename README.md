@@ -1,5 +1,10 @@
 # CSC543-Nim-Game
 
+## Running
+#### Install the required packages (tbd)
+#### Run the server
+- sudo $(which node) server.js
+
 ## List of Functionality
 - Cards glow when hovered over
 - Turns are counted and displayed on the page
