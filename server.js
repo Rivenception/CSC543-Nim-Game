@@ -14,10 +14,13 @@ function serverParse(req, res) {
   let urlObj = url.parse(req.url);
   switch (req.method) {
     case "POST":
+    case "PUT":
+    case "DELETE":
       handleAjax(urlObj, req, res);
       break;
 
     case "GET":
+    case "HEAD":
       handlePage(urlObj, res);
       break;
 
