@@ -1,4 +1,4 @@
-import { signup } from "./signupMethods.js";
+import { signup } from "./ajaxSignup.js";
 
 const registerFormElement = document.getElementById("signupSubmit");
 registerFormElement.addEventListener("click", function () {

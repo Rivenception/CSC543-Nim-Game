@@ -1,4 +1,4 @@
-import { login } from "./loginMethods.js";
+import { login } from "./ajaxLogin.js";
 
 let cards = document.querySelectorAll(".card");
 
