@@ -13,7 +13,7 @@
   </head>
   <body>
     <p>signup page</p>
-    <form id="signup" method="post">
+    <form id="signup">
       <label for="username">Username</label>
       <input type="string" name="signupUsername" id="signupUsername" required />
       <label for="password">Password</label>
@@ -23,12 +23,13 @@
         id="signupPassword"
         required
       />
-    <button type="submit" value="enter">Enter</button>
+      <button type="button" value="enter" id="signupSubmit">Enter</button>
     </form>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="./assets/js/signup.js"></script>
   </body>
 </html>

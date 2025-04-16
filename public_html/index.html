@@ -33,7 +33,7 @@
               <li class="nav-item">
                 <label for="player1Username" class="nav-link active" aria-current="page" href="#">Set Player 1
                   Name:</label>
-                <form class="d-flex" role="search" method="post" id="player1Login">
+                <form class="d-flex" role="search" id="loginPlayer1Form">
                   <div class="col">
                     <div class="row">
                       <input type="string" class="form-control me-2" type="search" placeholder="Enter Name Here"
@@ -44,7 +44,7 @@
                         aria-label="EnterPassword" name="loginPlayer1Password" id="loginPlayer1Password" />
                     </div>
                     <div class="row">
-                      <button class="btn btn-outline-primary" type="submit">
+                      <button class="btn btn-outline-primary" type="button" id="loginPlayer1Submit">
                         Enter
                       </button>
                     </div>
@@ -54,7 +54,7 @@
               <li class="nav-item">
                 <label for="player2UserName" class="nav-link active" aria-current="page" href="#">Set Player 2
                   Name:</label>
-                <form class="d-flex" role="search" method="post" id="player2Login">
+                <form class="d-flex" role="search" id="loginPlayer2Form">
                   <div class="col">
                     <div class="row">
                       <input type="string" class="form-control me-2" type="search" placeholder="Enter Name Here"
@@ -65,7 +65,7 @@
                         aria-label="EnterPassword" name="loginPlayer2Password" id="loginPlayer2Password" />
                     </div>
                     <div class="row">
-                      <button class="btn btn-outline-primary" type="submit">
+                      <button class="btn btn-outline-primary" type="submit" id="loginPlayer2Submit">
                         Enter
                       </button>
                     </div>
@@ -239,7 +239,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
     integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
     crossorigin="anonymous"></script>
-  <script src="./assets/script.js"></script>
+  <script type="module" src="./assets/js/script.js"></script>
 </body>
 
 </html>

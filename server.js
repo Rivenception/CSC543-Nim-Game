@@ -76,6 +76,9 @@ function handleAjax(url, req, res) {
       case "/signup":
         ajaxServe.signup(body, res);
         break;
+      case "/login":
+        ajaxServe.login(body, res);
+        break;
       default:
         ajaxServe.fof(body, res);
         break;

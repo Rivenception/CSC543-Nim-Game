@@ -34,7 +34,7 @@ exports.leaderboard = function (url, res) {
 
 //initial serving of signup page
 exports.signup = (url, res) => {
-  fs.readFile("./public_html/signup/signup.html", (err, content) => {
+  fs.readFile("./public_html/signup.html", (err, content) => {
     if (err) {
       res.writeHead(404, { "Content-Type": "text/json" });
       res.write(JSON.stringify({ response: "error finding login.html" }));

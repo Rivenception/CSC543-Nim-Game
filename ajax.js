@@ -18,5 +18,11 @@ exports.signup = function (body, res) {
   res.end();
 };
 
+exports.login = function (body, res) {
+  res.writeHead(200, body ? { "Content-Type": "application/json" } : undefined);
+  if (body) res.write(JSON.stringify(body));
+  res.end();
+};
+
 //Ajax request responder
 exports.leaderboard = function (body, res) {};
