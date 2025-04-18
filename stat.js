@@ -32,9 +32,9 @@ exports.leaderboard = function (url, res) {
   res.end();
 };
 
-//initial serving of login page
-exports.login = (url, res) => {
-  fs.readFile("./public_html/login/login.html", (err, content) => {
+//initial serving of signup page
+exports.signup = (url, res) => {
+  fs.readFile("./public_html/signup.html", (err, content) => {
     if (err) {
       res.writeHead(404, { "Content-Type": "text/json" });
       res.write(JSON.stringify({ response: "error finding login.html" }));
@@ -70,6 +70,7 @@ exports.assets = (url, res) => {
 
         case "png":
           contentType = "image/png";
+          break;
       }
       if (contentType) {
         res.writeHead(200, { "Content-Type": contentType });

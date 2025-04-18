@@ -44,8 +44,8 @@ function handlePage(url, res) {
       staticServe.home(url, res);
       break;
 
-    case "login":
-      staticServe.login(url, res);
+    case "signup":
+      staticServe.signup(url, res);
       break;
 
     case "assets":
@@ -67,6 +67,8 @@ function handleAjax(url, req, res) {
     console.log(`  Got data: ${body}`);
 
     switch (url.pathname) {
+      case "":
+      case "index":
       case "/home":
         ajaxServe.home(body, res);
         break;
@@ -74,7 +76,12 @@ function handleAjax(url, req, res) {
       case "/leaderboard":
         ajaxServe.leaderboard(body, res);
         break;
-
+      case "/signup":
+        ajaxServe.signup(body, res);
+        break;
+      case "/login":
+        ajaxServe.login(body, res);
+        break;
       default:
         ajaxServe.fof(body, res);
         break;
