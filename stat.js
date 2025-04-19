@@ -1,4 +1,5 @@
-let fs = require("fs");
+const fs = require("fs");
+const path = require("path");
 
 //Generic 404 error
 exports.fof = function (url, res) {
@@ -53,22 +54,21 @@ exports.assets = (url, res) => {
       res.writeHead(404, { "Content-Type": "text/json" });
       res.write(JSON.stringify({ response: "file not found" }));
     } else {
-      const splitUrl = url.pathname.toLowerCase().split("/");
       let contentType = "";
-      switch (splitUrl[splitUrl.length - 1].split(".")[1]) {
-        case "css":
+      switch (path.extname(url.pathname)) {
+        case ".css":
           contentType = "text/css";
           break;
 
-        case "js":
+        case ".js":
           contentType = "text/javascript";
           break;
 
-        case "jpg":
+        case ".jpg":
           contentType = "image/jpg";
           break;
 
-        case "png":
+        case ".png":
           contentType = "image/png";
           break;
       }
