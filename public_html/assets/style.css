@@ -47,5 +47,8 @@ body, html {
 }
 
 .row.selected {
-    background-color: black;
+    background-color: transparent;
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.6);
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 100px;
 }
