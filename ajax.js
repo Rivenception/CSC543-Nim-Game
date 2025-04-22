@@ -38,16 +38,20 @@ exports.signup = async function (body, res) {
 };
 
 exports.login = async function (body, res) {
-  const {username, password} = JSON.parse(body);
-  [[results]] = await getSignin(username, password);
-  console.log(results);
-  if (!results) {
+  const { username, password } = JSON.parse(body);
+  try {
+    [[results]] = await getSignin(username, password);
+    if (results) {
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.write(JSON.stringify({ id: results.id }));
+      res.end();
+    } else {
+      throw new Error("user not found");
+    }
+  } catch (error) {
+    console.log(error);
     res.writeHead(500, { "Content-Type": "application/json" });
-    res.write(JSON.stringify({error: `Failed to LOGIN user ${username}`}));
-    res.end();
-  } else {  
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.write(JSON.stringify({id: results.id}));
+    res.write(JSON.stringify({ error: `Failed to LOGIN user ${username}` }));
     res.end();
   }
 };

@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mysql2": "^3.14.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"

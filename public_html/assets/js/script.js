@@ -39,12 +39,28 @@ cards.forEach((element) => {
   });
 });
 
-const player1Login = document.getElementById("loginPlayer1Submit");
-const player2Login = document.getElementById("loginPlayer2Submit");
+const updateNames = () => {
+  const player1Name = localStorage.getItem("player1Name");
+  const player2Name = localStorage.getItem("player2Name");
+  document.getElementById("player1Name").innerText = player1Name
+    ? player1Name
+    : "Player 1 not found";
+  document.getElementById("player2Name").innerText = player2Name
+    ? player2Name
+    : "Player 2 not found";
+};
 
-player1Login.addEventListener("click", function () {
-  login(this);
-});
-player2Login.addEventListener("click", function () {
-  login(this);
-});
+document
+  .getElementById("loginPlayer1Submit")
+  .addEventListener("click", function () {
+    login(this);
+  });
+document
+  .getElementById("loginPlayer2Submit")
+  .addEventListener("click", function () {
+    login(this);
+  });
+
+document
+  .getElementById("updateNamesButton")
+  .addEventListener("click", updateNames);
