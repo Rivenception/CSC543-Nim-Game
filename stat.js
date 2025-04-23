@@ -38,10 +38,6 @@ exports.leaderboard = function (url, res) {
     }
     res.end();
   });
-
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.write(url.pathname);
-  res.end();
 };
 
 //initial serving of signup page
