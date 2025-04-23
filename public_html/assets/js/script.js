@@ -85,11 +85,6 @@ function rowMatch(element) {
     }
 }
 
-function rowToggle(element) {
-    element.parentElement.parentElement.classList.toggle("selected");
-    return element.parentElement.parentElement.classList.toggle("selected")
-}
-
 function isTileSelected(element) {
     console.log("Checking if a tile is selected (should be highlighted): " + element.classList.contains("shadow"));
     return element.classList.contains("shadow");

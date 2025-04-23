@@ -46,6 +46,10 @@ body, html {
     box-shadow: 0 0 10px 10px lightblue !important;
 }
 
+.card.shadow:hover {
+    box-shadow: 0 0 10px 10px gold !important;
+}
+
 .row.selected {
     background-color: transparent;
     box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.6);
