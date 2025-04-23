@@ -28,6 +28,17 @@ exports.home = function (url, res) {
 
 //Static leaderboard base
 exports.leaderboard = function (url, res) {
+  fs.readFile("./public_html/leaderboard.html", (err, content) => {
+    if (err) {
+      res.writeHead(404, { "Content-Type": "text/json" });
+      res.write(JSON.stringify({ response: "error finding index.html" }));
+    } else {
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.write(content);
+    }
+    res.end();
+  });
+
   res.writeHead(200, { "Content-Type": "text/plain" });
   res.write(url.pathname);
   res.end();

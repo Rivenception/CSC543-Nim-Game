@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leaderboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+
+<body>
+  <div class="bg">
+    <nav class="navbar" style="background-color: rgb(0, 51, 153)">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="./assets/images/scsu-logo.png" alt="SCSU_logo" width="auto" height="50" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar" aria-label="Toggle navigation" style="background-color: whitesmoke">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+              Placeholder Information
+            </h5>
+        </div>  
+      </div>
+    </nav>
+    <div class="container">
+      <h1 class="header">Nim Leaderboards</h1>
+      <h3 class="subheader">Hosted by SCSU Computer Science Department</h3>
+      <br>
+      <div class="table-container">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col" class="table_header">User</th>
+              <th scope="col" class="table_header">Wins</th>
+              <th scope="col" class="table_header">Losses</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"></script>
+  <script type="module" src="./assets/js/leaderboard.js"></script>
+</body>
+</html>
