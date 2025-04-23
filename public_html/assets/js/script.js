@@ -119,27 +119,27 @@ cards.forEach(element => {
 });
 
 const updateNames = () => {
-  const player1Name = localStorage.getItem("player1Name");
-  const player2Name = localStorage.getItem("player2Name");
-  document.getElementById("player1Name").innerText = player1Name
-    ? player1Name
-    : "Player 1 not found";
-  document.getElementById("player2Name").innerText = player2Name
-    ? player2Name
-    : "Player 2 not found";
-};
-
-document
-  .getElementById("loginPlayer1Submit")
-  .addEventListener("click", function () {
-    login(this);
-  });
-document
-  .getElementById("loginPlayer2Submit")
-  .addEventListener("click", function () {
-    login(this);
-  });
-
-document
-  .getElementById("updateNamesButton")
-  .addEventListener("click", updateNames);
+    const player1Name = localStorage.getItem("player1Name");
+    const player2Name = localStorage.getItem("player2Name");
+    document.getElementById("player1Name").innerText = player1Name
+      ? player1Name
+      : "Player 1 not found";
+    document.getElementById("player2Name").innerText = player2Name
+      ? player2Name
+      : "Player 2 not found";
+  };
+  
+  document
+    .getElementById("loginPlayer1Submit")
+    .addEventListener("click", function () {
+      login(this);
+    });
+  document
+    .getElementById("loginPlayer2Submit")
+    .addEventListener("click", function () {
+      login(this);
+    });
+  
+  document
+    .getElementById("updateNamesButton")
+    .addEventListener("click", updateNames);
