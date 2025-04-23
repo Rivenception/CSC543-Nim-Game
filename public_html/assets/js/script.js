@@ -9,7 +9,8 @@ let cards = document.querySelectorAll(".card");
 //   fourth_row: ["r4c1", "r4c2", "r4c3", "r4c4", "r4c5", "r4c6", "r4c7"],
 // };
 
-selected_row = "";
+let selected_row = "";
+let current_row = "";
 
 let cardStatus = () => {
     let tiles = Array.from(cards);
@@ -104,7 +105,6 @@ cards.forEach(element => {
     // console.log(element.parentElement.parentElement.id);
     // console.log(element.id);
     element.addEventListener("click", function() {
-        current_row = "";
         cardStatus(element);
         getRowOfTile(element);
         isRowSelected(element);
