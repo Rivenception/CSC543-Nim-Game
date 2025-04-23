@@ -1,5 +1,7 @@
 -- Define the database parameters. To be ran once on an sql server to set up the server.
 CREATE DATABASE nim;
+USE nim;
+
 CREATE TABLE user (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(50) NOT NULL UNIQUE,
