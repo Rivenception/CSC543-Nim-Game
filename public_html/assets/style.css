@@ -46,6 +46,19 @@ body, html {
     box-shadow: 0 0 10px 10px lightblue !important;
 }
 
+.card.shadow:hover {
+    box-shadow: 0 0 10px 10px gold !important;
+}
+
 .row.selected {
-    background-color: black;
+    background-color: transparent;
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.6);
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 100px;
+}
+
+.table_header {
+    text-align: center;
+    color: whitesmoke !important;
+    background-color: rgb(0, 51, 153) !important;
 }
