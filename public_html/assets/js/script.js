@@ -125,15 +125,11 @@ const updateNames = () => {
   };
   
   document
-    .getElementById("loginPlayer1Submit")
-    .addEventListener("click", function () {
-      login(this);
-    });
+    .getElementById("loginPlayer1Form")
+    .addEventListener("submit", login);
   document
-    .getElementById("loginPlayer2Submit")
-    .addEventListener("click", function () {
-      login(this);
-    });
+    .getElementById("loginPlayer2Form")
+    .addEventListener("submit", login);
   
   document
     .getElementById("updateNamesButton")

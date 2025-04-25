@@ -1,10 +1,14 @@
 let ajax = new XMLHttpRequest();
 
 const signup = (e) => {
+  e.preventDefault();
   ajax.open("POST", "/signup");
   ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   ajax.send(
-    JSON.stringify({ username: e.form[0].value, password: e.form[1].value })
+    JSON.stringify({
+      username: e.target.elements[0].value,
+      password: e.target.elements[1].value,
+    })
   );
   ajax.onreadystatechange = () => {
     if (ajax.readyState === XMLHttpRequest.DONE) {

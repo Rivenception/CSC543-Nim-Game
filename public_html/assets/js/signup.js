@@ -1,6 +1,4 @@
 import { signup } from "./ajaxSignup.js";
 
-const registerFormElement = document.getElementById("signupSubmit");
-registerFormElement.addEventListener("click", function () {
-  signup(this);
-});
+const registerFormElement = document.getElementById("signup");
+registerFormElement.addEventListener("submit", signup);
