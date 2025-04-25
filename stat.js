@@ -16,7 +16,7 @@ exports.fof = function (url, res) {
 exports.home = function (url, res) {
   fs.readFile("./public_html/index.html", (err, content) => {
     if (err) {
-      res.writeHead(404, { "Content-Type": "text/json" });
+      res.writeHead(404, { "Content-Type": "application/json" });
       res.write(JSON.stringify({ response: "error finding index.html" }));
     } else {
       res.writeHead(200, { "Content-Type": "text/html" });
@@ -30,7 +30,7 @@ exports.home = function (url, res) {
 exports.leaderboard = function (url, res) {
   fs.readFile("./public_html/leaderboard.html", (err, content) => {
     if (err) {
-      res.writeHead(404, { "Content-Type": "text/json" });
+      res.writeHead(404, { "Content-Type": "application/json" });
       res.write(JSON.stringify({ response: "error finding index.html" }));
     } else {
       res.writeHead(200, { "Content-Type": "text/html" });
@@ -44,7 +44,7 @@ exports.leaderboard = function (url, res) {
 exports.signup = (url, res) => {
   fs.readFile("./public_html/signup.html", (err, content) => {
     if (err) {
-      res.writeHead(404, { "Content-Type": "text/json" });
+      res.writeHead(404, { "Content-Type": "application/json" });
       res.write(JSON.stringify({ response: "error finding login.html" }));
     } else {
       res.writeHead(200, { "Content-Type": "text/html" });
@@ -58,7 +58,7 @@ exports.signup = (url, res) => {
 exports.assets = (url, res) => {
   fs.readFile("./public_html" + url.pathname, (err, content) => {
     if (err) {
-      res.writeHead(404, { "Content-Type": "text/json" });
+      res.writeHead(404, { "Content-Type": "application/json" });
       res.write(JSON.stringify({ response: "file not found" }));
     } else {
       let contentType = "";
@@ -83,7 +83,7 @@ exports.assets = (url, res) => {
         res.writeHead(200, { "Content-Type": contentType });
         res.write(content);
       } else {
-        res.writeHead(415, { "Content-Type": "text/json" });
+        res.writeHead(415, { "Content-Type": "application/json" });
         res.write(JSON.stringify({ response: "unsupported file type" }));
       }
     }
