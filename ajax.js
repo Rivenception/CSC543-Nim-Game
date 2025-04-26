@@ -9,6 +9,10 @@ const databaseConfig = {
   database: "nim"
 };
 
+////////////////////////////////////
+// AJAX request handler functions //
+////////////////////////////////////
+
 //Generic 404 error, AJAX edition
 exports.fof = function (body, res) {
   respond(res, 404, "application/json", body);
@@ -87,6 +91,10 @@ exports.resetGame = function (body, res) {
   }
 }
 
+////////////////////////
+// Responder Function //
+////////////////////////
+
 // requires res and status, type and body optional
 function respond (res, status, type, body){
   console.log(`Sending ${status}`);
@@ -99,8 +107,11 @@ function respond (res, status, type, body){
   res.end();
 }
 
-// Non-exported SQL Functions
-// ALL RETURN PROMISES TO BE AWAITED IN AN ASYNCHRONOUS CONTEXT!!!!!
+///////////////////////////////////////////////////////////////////////
+// Non-exported SQL Functions                                        //
+// ALL RETURN PROMISES TO BE AWAITED IN AN ASYNCHRONOUS CONTEXT!!!!! //
+// Put database access functions down here                           //
+///////////////////////////////////////////////////////////////////////
 
 async function insertUser (username, password) {
   database = await mysql.createConnection(databaseConfig);
