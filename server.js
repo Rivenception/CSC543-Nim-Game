@@ -91,6 +91,9 @@ function handleAjax(url, req, res) {
       case "/game/move":
         ajaxServe.moveGame(body, res);
 
+      case "/game/reset":
+        ajaxServe.resetGame(body,res);
+
       default:
         ajaxServe.fof(body, res);
         break;
