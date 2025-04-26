@@ -45,6 +45,7 @@ exports.signup = (url, res) => {
 
 //handles serving asset files
 exports.assets = (url, res) => {
+  console.log(url.pathname)
   fs.readFile("./public_html" + url.pathname, (err, content) => {
     if (err) {
       respond(res, 404, "application/json", JSON.stringify({ response: "file not found" }));
@@ -56,7 +57,7 @@ exports.assets = (url, res) => {
           break;
 
         case ".js":
-          contentType = "application/javascript";
+          contentType = "text/javascript";
           break;
 
         case ".jpg":

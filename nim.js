@@ -1,4 +1,4 @@
-export class NimGame {
+exports = class NimGame {
   #game = [1, 3, 5, 7];
   #moves = 0;
   constructor() {

@@ -32,7 +32,7 @@ function serverParse(req, res) {
 
 //Does url switching for static pages
 function handlePage(url, res) {
-  switch (url.pathname) {
+  switch (url.pathname.match('^(\/[^\/]*)')[1]) {
     //logically equivalent default pathnames fallthrough cases
     case "/home":
     case "/":
