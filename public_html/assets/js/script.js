@@ -1,4 +1,4 @@
-import { login } from "./ajaxLogin.js";
+import { loginRequest } from "./ajaxLogin.js";
 
 let cards = document.querySelectorAll(".card");
 
@@ -113,28 +113,33 @@ cards.forEach(element => {
     })
 });
 
-const updateNames = () => {
-    const player1Name = localStorage.getItem("player1Name");
-    const player2Name = localStorage.getItem("player2Name");
-    document.getElementById("player1Name").innerText = player1Name
-      ? player1Name
-      : "Player 1 not found";
-    document.getElementById("player2Name").innerText = player2Name
-      ? player2Name
-      : "Player 2 not found";
+const login = async (e) => {
+  e.preventDefault();
+  const user = {
+    username: e.target.elements[0].value,
+    password: e.target.elements[1].value,
   };
-  
-  document
-    .getElementById("loginPlayer1Submit")
-    .addEventListener("click", function () {
-      login(this);
-    });
-  document
-    .getElementById("loginPlayer2Submit")
-    .addEventListener("click", function () {
-      login(this);
-    });
-  
-  document
-    .getElementById("updateNamesButton")
-    .addEventListener("click", updateNames);
+  try {
+    const loginResult = await loginRequest(user);
+    if (loginResult.ok) {
+      const res = await loginResult.json();
+      console.log(`Ok ${loginResult.status}: ${JSON.stringify(res)}`);
+      if (e.target.id === "loginPlayer1Form") {
+        localStorage.setItem("player1Name", user.username);
+        localStorage.setItem("player1Id", res.id);
+        document.getElementById("player1Name").innerText = user.username;
+      } else {
+        localStorage.setItem("player2Name", user.username);
+        localStorage.setItem("player2Id", res.id);
+        document.getElementById("player2Name").innerText = user.username;
+      }
+    } else {
+      throw new Error(`${loginResult.status}: ${loginResult.statusText}`);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+document.getElementById("loginPlayer1Form").addEventListener("submit", login);
+document.getElementById("loginPlayer2Form").addEventListener("submit", login);
