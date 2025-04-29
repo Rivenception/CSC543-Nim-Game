@@ -2,11 +2,13 @@ import { signupRequest } from "./ajaxSignup.js";
 
 const signup = async (e) => {
   e.preventDefault();
+  const spinner = document.getElementById("spinner");
   const user = {
     username: e.target.elements[0].value,
     password: e.target.elements[1].value,
   };
   try {
+    spinner.hidden = false;
     const signupResult = await signupRequest(user);
     if (signupResult.ok) {
       const res = await signupResult.json();
@@ -16,6 +18,7 @@ const signup = async (e) => {
       throw new Error(`${signupResult.status}: ${signupResult.statusText}`);
     }
   } catch (error) {
+    spinner.hidden = true;
     console.log(error);
     alert(error)
   }
