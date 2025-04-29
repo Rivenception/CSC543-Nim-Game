@@ -21,7 +21,7 @@ let cardStatus = () => {
         console.log("Resetting selected row to empty string");
     } else {
         console.log("There is at least one card selected");
-    }    
+    }
 };
 
 function rowStatus(element) {
@@ -114,31 +114,33 @@ cards.forEach(element => {
 });
 
 const login = async (e) => {
-  e.preventDefault();
-  const user = {
-    username: e.target.elements[0].value,
-    password: e.target.elements[1].value,
-  };
-  try {
-    const loginResult = await loginRequest(user);
-    if (loginResult.ok) {
-      const res = await loginResult.json();
-      console.log(`Ok ${loginResult.status}: ${JSON.stringify(res)}`);
-      if (e.target.id === "loginPlayer1Form") {
-        localStorage.setItem("player1Name", user.username);
-        localStorage.setItem("player1Id", res.id);
-        document.getElementById("player1Name").innerText = user.username;
-      } else {
-        localStorage.setItem("player2Name", user.username);
-        localStorage.setItem("player2Id", res.id);
-        document.getElementById("player2Name").innerText = user.username;
-      }
-    } else {
-      throw new Error(`${loginResult.status}: ${loginResult.statusText}`);
+    e.preventDefault();
+    const user = {
+        username: e.target.elements[0].value,
+        password: e.target.elements[1].value,
+    };
+    try {
+        const loginResult = await loginRequest(user);
+        if (loginResult.ok) {
+            const res = await loginResult.json();
+            console.log(`Ok ${loginResult.status}: ${JSON.stringify(res)}`);
+            if (e.target.id === "loginPlayer1Form") {
+                localStorage.setItem("player1Name", user.username);
+                localStorage.setItem("player1Id", res.id);
+                document.getElementById("player1Name").innerText = user.username;
+            } else {
+                localStorage.setItem("player2Name", user.username);
+                localStorage.setItem("player2Id", res.id);
+                document.getElementById("player2Name").innerText = user.username;
+            }
+            alert(`${user.username} is logged in`);
+        } else {
+            throw new Error(`${loginResult.status}: ${loginResult.statusText}`);
+        }
+    } catch (error) {
+        alert(error);
+        console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
 };
 
 document.getElementById("loginPlayer1Form").addEventListener("submit", login);

@@ -11,11 +11,13 @@ const signup = async (e) => {
     if (signupResult.ok) {
       const res = await signupResult.json();
       console.log(`Ok ${signupResult.status}: ${JSON.stringify(res)}`);
+      alert("Account created successfully!")
     } else {
       throw new Error(`${signupResult.status}: ${signupResult.statusText}`);
     }
   } catch (error) {
     console.log(error);
+    alert(error)
   }
 };
 
