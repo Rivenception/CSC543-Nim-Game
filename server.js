@@ -33,6 +33,10 @@ function serverParse(req, res) {
 //Does url switching for static pages
 function handlePage(url, res) {
   switch (url.pathname.match('^(\/[^\/]*)')[1]) {
+    case "/leaderboard":
+      staticServe.leaderboard(url, res);
+      break;
+    
     //logically equivalent default pathnames fallthrough cases
     case "/signup":
     case "/":
