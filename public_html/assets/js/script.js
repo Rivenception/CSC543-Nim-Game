@@ -1,5 +1,5 @@
-import { login } from "./ajaxLogin.js";
 import { move, newGame, winCheck, resetGame } from "./ajaxGame.js";
+import { loginRequest } from "./ajaxLogin.js";
 
 let cards = document.querySelectorAll(".card");
 
@@ -23,7 +23,7 @@ let cardStatus = () => {
         console.log("Resetting selected row to empty string");
     } else {
         console.log("There is at least one card selected");
-    }    
+    }
 };
 
 function rowStatus(element) {
@@ -115,16 +115,35 @@ cards.forEach(element => {
     })
 });
 
-const updateNames = () => {
-    const player1Name = localStorage.getItem("player1Name");
-    const player2Name = localStorage.getItem("player2Name");
-    document.getElementById("player1Name").innerText = player1Name
-      ? player1Name
-      : "Player 1 not found";
-    document.getElementById("player2Name").innerText = player2Name
-      ? player2Name
-      : "Player 2 not found";
-  };
+const login = async (e) => {
+    e.preventDefault();
+    const user = {
+        username: e.target.elements[0].value,
+        password: e.target.elements[1].value,
+    };
+    try {
+        const loginResult = await loginRequest(user);
+        if (loginResult.ok) {
+            const res = await loginResult.json();
+            console.log(`Ok ${loginResult.status}: ${JSON.stringify(res)}`);
+            if (e.target.id === "loginPlayer1Form") {
+                localStorage.setItem("player1Name", user.username);
+                localStorage.setItem("player1Id", res.id);
+                document.getElementById("player1Name").innerText = user.username;
+            } else {
+                localStorage.setItem("player2Name", user.username);
+                localStorage.setItem("player2Id", res.id);
+                document.getElementById("player2Name").innerText = user.username;
+            }
+            alert(`${user.username} is logged in`);
+        } else {
+            throw new Error(`${loginResult.status}: ${loginResult.statusText}`);
+        }
+    } catch (error) {
+        alert(error);
+        console.log(error);
+    }
+};
 
 function rowToIndex(row){
     switch(row){
@@ -224,25 +243,8 @@ function displayMove(row, amount) {
     }
 }
 
-document
-.getElementById("loginPlayer1Submit")
-.addEventListener("click", function () {
-    login(this);
-});
-document
-.getElementById("loginPlayer2Submit")
-.addEventListener("click", function () {
-    login(this);
-});
+document.getElementById("loginPlayer1Form").addEventListener("submit", login);
+document.getElementById("loginPlayer2Form").addEventListener("submit", login);
 
-document
-.getElementById("updateNamesButton")
-.addEventListener("click", updateNames);
-
-document
-.getElementById("submitMoveButton")
-.addEventListener("click", makeMove);
-
-document
-.getElementById("resetGameButton")
-.addEventListener("click", clientResetGame);
+document.getElementById("submitMoveButton").addEventListener("click", makeMove);
+document.getElementById("resetGameButton").addEventListener("click", clientResetGame);

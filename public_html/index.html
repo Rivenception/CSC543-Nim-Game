@@ -14,7 +14,7 @@
   <div class="bg">
     <nav class="navbar" style="background-color: rgb(0, 51, 153)">
       <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           <img src="./assets/images/scsu-logo.png" alt="SCSU_logo" width="auto" height="50" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
@@ -37,14 +37,14 @@
                   <div class="col">
                     <div class="row">
                       <input type="string" class="form-control me-2" type="search" placeholder="Enter Name Here"
-                        aria-label="EnterName" name="loginPlayer1UserName" id="loginPlayer1UserName" />
+                        aria-label="EnterName" name="loginPlayer1UserName" id="loginPlayer1UserName" required />
                     </div>
                     <div class="row">
                       <input type="password" class="form-control me-2" type="search" placeholder="Enter password here"
-                        aria-label="EnterPassword" name="loginPlayer1Password" id="loginPlayer1Password" />
+                        aria-label="EnterPassword" name="loginPlayer1Password" id="loginPlayer1Password" required />
                     </div>
                     <div class="row">
-                      <button class="btn btn-outline-primary" type="button" id="loginPlayer1Submit">
+                      <button class="btn btn-outline-primary" type="submit" id="loginPlayer1Submit">
                         Enter
                       </button>
                     </div>
@@ -58,26 +58,29 @@
                   <div class="col">
                     <div class="row">
                       <input type="string" class="form-control me-2" type="search" placeholder="Enter Name Here"
-                        aria-label="EnterName" name="loginPlayer2UserName" id="loginPlayer2UserName" />
+                        aria-label="EnterName" name="loginPlayer2UserName" id="loginPlayer2UserName" required />
                     </div>
                     <div class="row">
                       <input type="password" class="form-control me-2" type="search" placeholder="Enter password here"
-                        aria-label="EnterPassword" name="loginPlayer2Password" id="loginPlayer2Password" />
+                        aria-label="EnterPassword" name="loginPlayer2Password" id="loginPlayer2Password" required />
                     </div>
                     <div class="row">
-                      <button class="btn btn-outline-primary" type="button" id="loginPlayer2Submit">
+                      <button class="btn btn-outline-primary" type="submit" id="loginPlayer2Submit">
                         Enter
                       </button>
                     </div>
                   </div>
                 </form>
               </li>
-              <li class="nav-item">
-                <br />
-                <button class="btn btn-outline-primary" id="resetGameButton" type="submit">
+              <li class="nav-item row mt-2">
+                <button class="btn btn-outline-primary col" id="resetGameButton" type="submit">
                   Reset Game
                 </button>
-                <button class="btn btn-outline-primary" type="button" id="updateNamesButton">Update Names</button>
+                <br />
+                <a class="btn btn-outline-primary col" href="/signup">Create Account</a>
+              </li>
+              <li class="nav-item row mt-2">
+                <a class="btn btn-outline-primary col" href="/leaderboard">Leaderboard</a>
               </li>
               <li class="nav-item">
                 <br />

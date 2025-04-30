@@ -1,20 +1,14 @@
-let ajax = new XMLHttpRequest();
-
-const signup = (e) => {
-  ajax.open("POST", "/signup");
-  ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  ajax.send(
-    JSON.stringify({ username: e.form[0].value, password: e.form[1].value })
-  );
-  ajax.onreadystatechange = () => {
-    if (ajax.readyState === XMLHttpRequest.DONE) {
-      if (ajax.status === 200) {
-        console.log(`Signup success: ${ajax.response}`);
-      } else {
-        console.log(`Error ${ajax.status}: ${ajax.response}`);
-      }
-    }
-  };
+const signupRequest = (user) => {
+  const { username, password } = user;
+  if (username && password) {
+    return fetch("/signup", {
+      method: "POST",
+      body: JSON.stringify({ username: username, password: password }),
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    });
+  } else {
+    throw new Error("username and/or password is missing");
+  }
 };
 
-export { signup };
+export { signupRequest };

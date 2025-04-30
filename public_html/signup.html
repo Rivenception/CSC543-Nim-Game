@@ -10,21 +10,67 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
-    <p>signup page</p>
-    <form id="signup">
-      <label for="username">Username</label>
-      <input type="string" name="signupUsername" id="signupUsername" required />
-      <label for="password">Password</label>
-      <input
-        type="password"
-        name="signupPassword"
-        id="signupPassword"
-        required
-      />
-      <button type="button" value="enter" id="signupSubmit">Enter</button>
-    </form>
+    <div class="bg">
+      <nav class="navbar" style="background-color: rgb(0, 51, 153)">
+        <div class="container">
+          <a class="navbar-brand row" href="/">
+            <img
+              src="./assets/images/scsu-logo.png"
+              alt="SCSU_logo"
+              width="auto"
+              height="50"
+              class="col"
+            />
+          </a>
+        </div>
+      </nav>
+      <a href="/index" class="row mt-5 justify-content-md-center">
+        <div class="col-md-auto">
+          <h4 class="btn btn-primary">To game</h4>
+        </div>
+      </a>
+      <div class="row m-3 justify-content-md-center">
+        <form id="signup" class="col-md-auto">
+          <div class="form-group">
+            <label for="username" class="subheader">Username</label>
+            <input
+              type="string"
+              class="form-control"
+              name="signupUsername"
+              id="signupUsername"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password" class="subheader">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              name="signupPassword"
+              id="signupPassword"
+              required
+            />
+          </div>
+          <br />
+          <button
+            class="btn btn-primary"
+            type="submit"
+            value="enter"
+            id="signupSubmit"
+          >
+            Enter
+          </button>
+        </form>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"

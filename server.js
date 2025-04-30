@@ -34,18 +34,14 @@ function serverParse(req, res) {
 function handlePage(url, res) {
   switch (url.pathname.match('^(\/[^\/]*)')[1]) {
     //logically equivalent default pathnames fallthrough cases
-    case "/home":
+    case "/signup":
     case "/":
+      staticServe.signup(url, res);
+      break;
+      
+    case "/home":
     case "/index":
       staticServe.home(url, res);
-      break;
-
-    case "/leaderboard":
-      staticServe.leaderboard(url, res);
-      break;
-
-    case "/signup":
-      staticServe.signup(url, res);
       break;
 
     case "/assets":
