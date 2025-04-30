@@ -1,4 +1,5 @@
 const creds = require('./creds.js');
+const gameManager = require("./nimManager.js");
 
 const mysql = require('mysql2/promise');
 const databaseConfig = {
@@ -8,18 +9,18 @@ const databaseConfig = {
   database: "nim"
 };
 
+////////////////////////////////////
+// AJAX request handler functions //
+////////////////////////////////////
+
 //Generic 404 error, AJAX edition
 exports.fof = function (body, res) {
-  res.writeHead(404, body ? { "Content-Type": "application/json" } : undefined);
-  if (body) res.write(JSON.stringify(body));
-  res.end();
+  respond(res, 404, "application/json", body);
 };
 
 //Ajax request responder
 exports.home = async function (body, res) {
-  res.writeHead(200, body ? { "Content-Type": "application/json" } : undefined);
-  if (body) res.write(JSON.stringify(body));
-  res.end();
+  respond(res, 200, "application/json", body);
 };
 
 exports.signup = async function (body, res) {
@@ -27,32 +28,19 @@ exports.signup = async function (body, res) {
   try {
     [results] = await insertUser(username, password);
     //console.log(results);
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.write(JSON.stringify({username: username}));
-    res.end();
+    respond(res, 200, "application/json", JSON.stringify({ username: username }));
   } catch (error) {
-    res.writeHead(500, { "Content-Type": "application/json" });
-    res.write(JSON.stringify({error: `Failed to INSERT user ${username}`}));
-    res.end();
+    respond(res, 500, "application/json", JSON.stringify({ error: `Failed to INSERT user ${username}` }));
   }
 };
 
 exports.login = async function (body, res) {
   const { username, password } = JSON.parse(body);
-  try {
-    [[results]] = await getSignin(username, password);
-    if (results) {
-      res.writeHead(200, { "Content-Type": "application/json" });
-      res.write(JSON.stringify({ id: results.id }));
-      res.end();
-    } else {
-      throw new Error("user not found");
-    }
-  } catch (error) {
-    console.log(error);
-    res.writeHead(500, { "Content-Type": "application/json" });
-    res.write(JSON.stringify({ error: `Failed to LOGIN user ${username}` }));
-    res.end();
+  [[results]] = await getSignin(username, password);
+  if (results) {
+    respond(res, 200, "application/json", JSON.stringify({ id: results.id }));
+  } else {
+    respond(res, 500, "application/json", JSON.stringify({ error: `Failed to LOGIN user ${username}` }));
   }
 };
 
@@ -60,20 +48,84 @@ exports.login = async function (body, res) {
 exports.leaderboard = async function (body, res) {
   [results] = await getStatistics();
   console.log(results);
-  if (!results) {
-    res.writeHead(500, { "Content-Type": "application/json" });
-    res.write(JSON.stringify({error: `Failed to GET leaderboard statistics`}));
-    res.end();
+  if (results) {
+    respond(res, 200, "application/json", JSON.stringify(results));
   } else {  
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.write(JSON.stringify(results));
-    res.end();
+    respond(res, 500, "application/json", JSON.stringify({error: `Failed to GET leaderboard statistics`}));
   }
 };
 
+// expects user1 and user2 id's
+exports.newGame = function (body, res) {
+  const { user1: u1, user2: u2 } = JSON.parse(body);
+  game = gameManager.newGame(u1, u2);
+  if (game) {
+    respond(res, 200, "application/json", JSON.stringify(game));
+  } else {
+    respond(res, 300, "application/json", JSON.stringify({error: `Failed to create new game!`}));
+  }
+}
 
-// Non-exported SQL Functions
-// ALL RETURN PROMISES TO BE AWAITED IN AN ASYNCHRONOUS CONTEXT!!!!!
+// expects user1 and user2 id's and row and amount
+exports.moveGame = function (body, res) {
+  const { user1: u1, user2: u2, row: r, amount: a } = JSON.parse(body);
+  //console.log(u1, u2, r, a);
+  success = gameManager.move(u1, u2, r, a);
+  if (success) {
+    respond(res, 200, "application/json", JSON.stringify(success));
+  } else {
+    respond(res, 300, "application/json", JSON.stringify({error: `Failed to make move!`}));
+  }
+}
+
+exports.wonGame = function (body, res) {
+  const { user1: u1, user2: u2 } = JSON.parse(body);
+  let game = gameManager.getGame(u1, u2);
+  //console.log(game);
+  if(undefined != game.winner){
+    let winner = game.winner ? u2 : u1;
+    let loser = game.winner ? u1 : u2;
+    addWin(winner);
+    addLoss(loser);
+    gameManager.prune(true, true);
+    respond(res, 200, "application/json", JSON.stringify(winner));
+  } else {
+    respond(res, 300, "application/json", JSON.stringify(undefined));
+  }
+}
+
+// expects user1 and user2 id's
+exports.resetGame = function (body, res) {
+  const { user1: u1, user2: u2 } = JSON.parse(body);
+  success = gameManager.resetGame(u1, u2);
+  if (success) {
+    respond(res, 200, "application/json", JSON.stringify(success));
+  } else {
+    respond(res, 300, "application/json", JSON.stringify({error: `Failed to reset game!`}));
+  }
+}
+
+////////////////////////
+// Responder Function //
+////////////////////////
+
+// requires res and status, type and body optional
+function respond (res, status, type, body){
+  console.log(`Sending ${status}`);
+  if (!type)
+    res.writeHead(status);
+  else
+    res.writeHead(status, {'Content-Type': type});
+  if (body)
+    res.write(body);
+  res.end();
+}
+
+///////////////////////////////////////////////////////////////////////
+// Non-exported SQL Functions                                        //
+// ALL RETURN PROMISES TO BE AWAITED IN AN ASYNCHRONOUS CONTEXT!!!!! //
+// Put database access functions down here                           //
+///////////////////////////////////////////////////////////////////////
 
 async function insertUser (username, password) {
   database = await mysql.createConnection(databaseConfig);

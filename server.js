@@ -14,8 +14,6 @@ function serverParse(req, res) {
   let urlObj = url.parse(req.url);
   switch (req.method) {
     case "POST":
-      handleAjax(urlObj, req, res);
-      break;
     case "PUT":
     case "DELETE":
       handleAjax(urlObj, req, res);
@@ -34,25 +32,19 @@ function serverParse(req, res) {
 
 //Does url switching for static pages
 function handlePage(url, res) {
-  switch (url.pathname.split("/")[1]) {
-    case "leaderboard":
-      staticServe.leaderboard(url, res);
-      break;
-
+  switch (url.pathname.match('^(\/[^\/]*)')[1]) {
     //logically equivalent default pathnames fallthrough cases
-    case "signup":
-    case "":
+    case "/signup":
+    case "/":
       staticServe.signup(url, res);
       break;
-    case "home":
-    case "index":
+      
+    case "/home":
+    case "/index":
       staticServe.home(url, res);
       break;
 
-      staticServe.signup(url, res);
-      break;
-
-    case "assets":
+    case "/assets":
       staticServe.assets(url, res);
       break;
 
@@ -71,8 +63,8 @@ function handleAjax(url, req, res) {
     console.log(`  Got data: ${body}`);
 
     switch (url.pathname) {
-      case "":
-      case "index":
+      case "/":
+      case "/index":
       case "/home":
         ajaxServe.home(body, res);
         break;
@@ -80,12 +72,31 @@ function handleAjax(url, req, res) {
       case "/leaderboard":
         ajaxServe.leaderboard(body, res);
         break;
+
       case "/signup":
         ajaxServe.signup(body, res);
         break;
+
       case "/login":
         ajaxServe.login(body, res);
         break;
+
+      case "/game/new":
+        ajaxServe.newGame(body, res);
+        break;
+
+      case "/game/move":
+        ajaxServe.moveGame(body, res);
+        break;
+
+      case "/game/reset":
+        ajaxServe.resetGame(body,res);
+        break;
+
+      case "/game/won":
+        ajaxServe.wonGame(body, res);
+        break;
+
       default:
         ajaxServe.fof(body, res);
         break;
