@@ -57,11 +57,10 @@ exports.leaderboard = async function (body, res) {
 
 // expects user1 and user2 id's
 exports.newGame = function (body, res) {
-  const { u1, u2 } = JSON.parse(body);
+  const { user1: u1, user2: u2 } = JSON.parse(body);
   game = gameManager.newGame(u1, u2);
   if (game) {
     respond(res, 200, "application/json", JSON.stringify(game));
-    gameManager.prune();
   } else {
     respond(res, 300, "application/json", JSON.stringify({error: `Failed to create new game!`}));
   }
@@ -69,23 +68,38 @@ exports.newGame = function (body, res) {
 
 // expects user1 and user2 id's and row and amount
 exports.moveGame = function (body, res) {
-  const { u1, u2, r, a } = JSON.parse(body);
+  const { user1: u1, user2: u2, row: r, amount: a } = JSON.parse(body);
+  //console.log(u1, u2, r, a);
   success = gameManager.move(u1, u2, r, a);
   if (success) {
     respond(res, 200, "application/json", JSON.stringify(success));
-    gameManager.prune();
   } else {
     respond(res, 300, "application/json", JSON.stringify({error: `Failed to make move!`}));
   }
 }
 
+exports.wonGame = function (body, res) {
+  const { user1: u1, user2: u2 } = JSON.parse(body);
+  let game = gameManager.getGame(u1, u2);
+  //console.log(game);
+  if(undefined != game.winner){
+    let winner = game.winner ? u2 : u1;
+    let loser = game.winner ? u1 : u2;
+    addWin(winner);
+    addLoss(loser);
+    gameManager.prune(true, true);
+    respond(res, 200, "application/json", JSON.stringify(winner));
+  } else {
+    respond(res, 300, "application/json", JSON.stringify(undefined));
+  }
+}
+
 // expects user1 and user2 id's
 exports.resetGame = function (body, res) {
-  const { u1, u2 } = JSON.parse(body);
+  const { user1: u1, user2: u2 } = JSON.parse(body);
   success = gameManager.resetGame(u1, u2);
   if (success) {
     respond(res, 200, "application/json", JSON.stringify(success));
-    gameManager.prune();
   } else {
     respond(res, 300, "application/json", JSON.stringify({error: `Failed to reset game!`}));
   }

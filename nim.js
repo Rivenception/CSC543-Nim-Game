@@ -1,4 +1,4 @@
-exports = class NimGame {
+class NimGame {
   #game = [1, 3, 5, 7];
   #moves = 0;
   constructor() {
@@ -46,6 +46,8 @@ exports = class NimGame {
     this.#moves++;
   }
 }
+
+module.exports = NimGame;
 
 // TEST CODE, should not be executed unless testing this class
 // Parts can be reused after importing NimGame

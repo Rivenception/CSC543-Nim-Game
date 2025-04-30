@@ -1,4 +1,5 @@
 import { login } from "./ajaxLogin.js";
+import { move, newGame, winCheck, resetGame } from "./ajaxGame.js";
 
 let cards = document.querySelectorAll(".card");
 
@@ -11,6 +12,7 @@ let cards = document.querySelectorAll(".card");
 
 let selected_row = "";
 let current_row = "";
+const indexToRowTag = [undefined, "first_row", "second_row", "third_row", "fourth_row"];
 
 let cardStatus = () => {
     let tiles = Array.from(cards);
@@ -123,18 +125,124 @@ const updateNames = () => {
       ? player2Name
       : "Player 2 not found";
   };
-  
-  document
-    .getElementById("loginPlayer1Submit")
-    .addEventListener("click", function () {
-      login(this);
-    });
-  document
-    .getElementById("loginPlayer2Submit")
-    .addEventListener("click", function () {
-      login(this);
-    });
-  
-  document
-    .getElementById("updateNamesButton")
-    .addEventListener("click", updateNames);
+
+function rowToIndex(row){
+    switch(row){
+        case "first_row":
+            return 1;
+
+        case "second_row":
+            return 2;
+
+        case "third_row":
+            return 3;
+        
+        case "fourth_row":
+            return 4;
+
+        default:
+            return 0;
+    }
+}
+
+async function makeMove(){
+    let row = rowToIndex(current_row);
+    let tiles = Array.from(cards);
+    let amount = tiles.filter(tile => tile.classList.contains("shadow")).length;
+    const user1 = localStorage.getItem("player1Id");
+    const user2 = localStorage.getItem("player2Id");
+    if(!user1 || !user2){
+        displayMove(0,0);
+        throw(new Error("Not Logged In!"));
+    }
+    
+    //do move front-end validation and call out to server
+    let moveStatus = await move(row-1, amount, user1, user2);
+    let gameStatus = "";
+    if(!moveStatus){
+        gameStatus = await newGame(user1, user2);
+        if(gameStatus)
+            moveStatus = await move(row-1, amount, user1, user2);
+        else
+            throw(new Error(`Failed to make Game for ${user1} ${user2}!`));
+    }
+
+    //show the move
+    if(moveStatus){
+        displayMove(row, amount);
+    } else {
+        displayMove(0,0);
+        throw(new Error("Could not make Move or create Game!"));
+    }
+
+    //check if won
+    let winner = await winCheck(user1, user2);
+    console.log(winner);
+    if(undefined != winner){
+        let names = [ localStorage.getItem("player1Name"), localStorage.getItem("player2Name")];
+        alert(`${names[winner]} has won!`);
+    }
+}
+
+async function clientResetGame(){
+    displayMove(0,0);
+    const user1 = localStorage.getItem("player1Id");
+    const user2 = localStorage.getItem("player2Id");
+    if (!user1 || !user2)
+        throw(new Error("Not Logged In!"));
+    const success = await resetGame(user1, user2);
+    if(success){
+        let tiles = Array.from(cards);
+        tiles.map(tile => tile.parentElement.classList.remove("d-none"));
+    } else {
+        throw(new Error("Failed to Reset Game!"))
+    }
+}
+
+function displayMove(row, amount) {
+    console.log(`Removing ${amount} from row #${row}`);
+    let tiles = Array.from(cards);
+    // reset all the highlights to clear selection
+    tiles.map(tile => tile.classList.remove("shadow"));
+    tiles.map(tile => tile.parentElement.parentElement.classList.remove("selected"));
+    // inform the rest of the code selection was cleared
+    cardStatus();
+    // find the correct nth row
+    row = document.getElementById(indexToRowTag[row])
+    if(!row)
+        return;
+    //Parse the childNodes "NodeList" type into a normal array and filter it
+    let rowNodes = [];
+    for(let node of row.childNodes){
+        if(node.classList && !node.classList.contains("d-none"))
+            rowNodes.push(node);
+    }
+    // d-none the correct number of cards
+    for(let i=0; i<amount; i++){
+        console.log(rowNodes[i]);
+        rowNodes[i].classList.add("d-none");
+    }
+}
+
+document
+.getElementById("loginPlayer1Submit")
+.addEventListener("click", function () {
+    login(this);
+});
+document
+.getElementById("loginPlayer2Submit")
+.addEventListener("click", function () {
+    login(this);
+});
+
+document
+.getElementById("updateNamesButton")
+.addEventListener("click", updateNames);
+
+document
+.getElementById("submitMoveButton")
+.addEventListener("click", makeMove);
+
+document
+.getElementById("resetGameButton")
+.addEventListener("click", clientResetGame);

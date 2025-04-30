@@ -87,12 +87,19 @@ function handleAjax(url, req, res) {
 
       case "/game/new":
         ajaxServe.newGame(body, res);
+        break;
 
       case "/game/move":
         ajaxServe.moveGame(body, res);
+        break;
 
       case "/game/reset":
         ajaxServe.resetGame(body,res);
+        break;
+
+      case "/game/won":
+        ajaxServe.wonGame(body, res);
+        break;
 
       default:
         ajaxServe.fof(body, res);
