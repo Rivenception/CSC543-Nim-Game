@@ -114,6 +114,8 @@ cards.forEach(element => {
 });
 
 const login = async (e) => {
+    const spinner = document.getElementById("spinner");
+    spinner.hidden = false;
     e.preventDefault();
     const user = {
         username: e.target.elements[0].value,
@@ -141,6 +143,7 @@ const login = async (e) => {
         alert(error);
         console.log(error);
     }
+    spinner.hidden = true;
 };
 
 document.getElementById("loginPlayer1Form").addEventListener("submit", login);
