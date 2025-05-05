@@ -21,7 +21,7 @@ const signup = async (e) => {
     console.log(error);
     alert(error);
   }
-    spinner.hidden = true;
+  spinner.hidden = true;
 };
 
 const registerFormElement = document.getElementById("signup");
