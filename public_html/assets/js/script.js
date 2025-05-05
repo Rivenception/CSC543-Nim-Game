@@ -201,7 +201,7 @@ async function makeMove(){
     let winner = await winCheck(user1, user2);
     console.log(winner);
     if(undefined != winner){
-        let names = [ localStorage.getItem("player1Name"), localStorage.getItem("player2Name")];
+        let names = [ localStorage.getItem("player2Name"), localStorage.getItem("player1Name") ];
         alert(`${names[winner]} has won!`);
     }
 }
