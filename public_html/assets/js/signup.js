@@ -18,10 +18,10 @@ const signup = async (e) => {
       throw new Error(`${signupResult.status}: ${signupResult.statusText}`);
     }
   } catch (error) {
-    spinner.hidden = true;
     console.log(error);
     alert(error);
   }
+    spinner.hidden = true;
 };
 
 const registerFormElement = document.getElementById("signup");
