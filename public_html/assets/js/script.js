@@ -116,7 +116,7 @@ cards.forEach(element => {
 });
 
 const login = async (e) => {
-    const spinner = document.getElementById("spinner");
+    const spinner = document.getElementById("spinnerDiv");
     spinner.hidden = false;
     e.preventDefault();
     const user = {
