@@ -32,6 +32,7 @@ body, html {
     color: whitesmoke;
 }
 
+
 .player2 {
     text-align: center;
     color: whitesmoke;
@@ -65,4 +66,18 @@ body, html {
     text-align: center;
     color: whitesmoke !important;
     background-color: rgb(0, 51, 153) !important;
+}
+
+.user1.turn {
+    background-color: transparent;
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.6);
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 100px;
+}
+
+.user2.turn {
+    background-color: transparent;
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.6);
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 100px;
 }
