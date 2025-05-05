@@ -3,7 +3,7 @@ const signupRequest = (user) => {
   if (username && password) {
     return fetch("/signup", {
       method: "POST",
-      body: JSON.stringify({ username: username, password: password }),
+      body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
     });
   } else {
