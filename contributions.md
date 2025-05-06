@@ -4,6 +4,7 @@
 ## Corwin
 
 ## Emmanuel
+* Discussion around design (with other team members)
 * Handler for serving asset files
 * Handlers for serving html pages
 * Helped with routing for URL/methods
