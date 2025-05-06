@@ -143,6 +143,7 @@ function turnToggleReset() {
     }
 }
 
+// Emmanuel
 const login = async (e) => {
     const spinner = document.getElementById("spinnerDiv");
     spinner.hidden = false;

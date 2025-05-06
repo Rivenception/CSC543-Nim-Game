@@ -9,6 +9,7 @@ const ajaxServe = require("./ajax.js");
 
 //Parse the URL and decide if req is AJAX
 //AJAX goes by POST,
+// Emmanuel: helped here
 function serverParse(req, res) {
   console.log(`${req.method} Request received: ${req.url}`);
   let urlObj = url.parse(req.url);
@@ -31,6 +32,7 @@ function serverParse(req, res) {
 }
 
 //Does url switching for static pages
+// Emmanuel: helped here
 function handlePage(url, res) {
   switch (url.pathname.match('^(\/[^\/]*)')[1]) {
     case "/leaderboard":

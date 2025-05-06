@@ -11,6 +11,7 @@ exports.fof = function (url, res) {
 };
 
 //Static home page base
+// Emmanuel: created this with changes by Corwin
 exports.home = function (url, res) {
   fs.readFile("./public_html/index.html", (err, content) => {
     if (err) {
@@ -33,6 +34,7 @@ exports.leaderboard = function (url, res) {
 };
 
 //initial serving of signup page
+// Emmanuel: created this with changes by Corwin
 exports.signup = (url, res) => {
   fs.readFile("./public_html/signup.html", (err, content) => {
     if (err) {
@@ -44,6 +46,7 @@ exports.signup = (url, res) => {
 };
 
 //handles serving asset files
+// Emmanuel: created this with changes by Corwin
 exports.assets = (url, res) => {
   console.log(url.pathname)
   fs.readFile("./public_html" + url.pathname, (err, content) => {

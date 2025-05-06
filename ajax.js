@@ -19,10 +19,12 @@ exports.fof = function (body, res) {
 };
 
 //Ajax request responder
+  
+// Emmanuel: helped here
 exports.home = async function (body, res) {
   respond(res, 200, "application/json", body);
 };
-
+// Emmanuel: and here
 exports.signup = async function (body, res) {
   const {username, password} = JSON.parse(body);
   try {
