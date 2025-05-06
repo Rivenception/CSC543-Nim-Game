@@ -1,4 +1,8 @@
-# Contributions
+# Contributions for Nim Game
+## Rick
+
+## Corwin
+
 ## Emmanuel
 * Handler for serving asset files
 * Handlers for serving html pages
