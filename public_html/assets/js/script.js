@@ -1,8 +1,10 @@
 import { move, newGame, winCheck, resetGame } from "./ajaxGame.js";
 import { loginRequest } from "./ajaxLogin.js";
 
+//Rick: added for tracking cards
 let cards = document.querySelectorAll(".card");
 
+// Rick: added this to track the game state but we didn't use it.
 // let game_state = {
 //   first_row: ["r1c1"],
 //   second_row: ["r2c1", "r2c2", "r2c3"],
@@ -15,6 +17,7 @@ let current_row = "";
 // Corwin: lookup table
 const indexToRowTag = [undefined, "first_row", "second_row", "third_row", "fourth_row"];
 
+// Rick: helper function to track is a card is already hovered over
 let cardStatus = () => {
     let tiles = Array.from(cards);
     let anySelected = tiles.some(tile => tile.classList.contains("shadow"));
@@ -27,6 +30,7 @@ let cardStatus = () => {
     }
 };
 
+// Rick: helper function to track if a card is selected
 function rowStatus(element) {
     switch (selected_row) {
         case "first_row":
@@ -63,17 +67,20 @@ function rowStatus(element) {
     }
 };
 
+// Rick: helper function to track the row of a card
 function getRowOfTile(element) {
     current_row = element.parentElement.parentElement.id;
     // console.log("Current row: " + current_row);
     return element.parentElement.parentElement.id
 }
 
+// Rick: helper function to track if a card is selected what row it is in
 function isRowSelected(element) {
     // console.log("Checking if row is selected " + element.parentElement.parentElement.classList.contains("selected"));
     return element.parentElement.parentElement.classList.contains("selected")
 }
 
+// Rick: helper fucntion to check if a row is selected and if it matches the current row
 function rowMatch(element) {
     if (selected_row === "") {
         // console.log("No row selected, selecting: " + element.parentElement.parentElement.id);
@@ -88,17 +95,20 @@ function rowMatch(element) {
     }
 }
 
+// Rick: helper function to track if a tile is selected
 function isTileSelected(element) {
     // console.log("Checking if a tile is selected (should be highlighted): " + element.classList.contains("shadow"));
     return element.classList.contains("shadow");
 }
 
+// Rick: helper function to toggle the tile has shadow class tag
 function TileToggle(element) {
     // console.log("Toggling tile: " + element.classList.contains("shadow"));
     element.classList.toggle("shadow");
     return
 }
 
+// Rick: function to handle the visual feedback of the game board to the user
 cards.forEach(element => {
     // console.log(element.parentElement.parentElement.id);
     // console.log(element.id);
@@ -116,6 +126,7 @@ cards.forEach(element => {
     })
 });
 
+// Rick: added this visual feedback for turn change on move submission
 function turnToggle() {
     let player1 = document.getElementById("first_player")
     let player2 = document.getElementById("second_player")
@@ -131,6 +142,7 @@ function turnToggle() {
     }
 }
 
+//Rick: added this visual to reset turns
 function turnToggleReset() {
     let player1 = document.getElementById("first_player")
     let player2 = document.getElementById("second_player")
@@ -210,7 +222,7 @@ async function makeMove(){
         throw(new Error("Not Logged In!"));
     }
 
-    // visual feedback for turn change on move submission
+    //Rick: added this visual feedback for turn change on move submission
     turnToggle();
     
     //do move front-end validation and call out to server
@@ -273,7 +285,7 @@ async function clientResetGame(){
         throw(new Error("Failed to Reset Game!"))
     }
 
-    // reset the turn indicator
+    // Rick: added function to reset the turn indicator
     turnToggleReset()
 }
 

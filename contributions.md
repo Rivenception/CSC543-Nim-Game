@@ -1,5 +1,15 @@
 # Contributions for Nim Game
 ## Rick
+* Initial project pitch to team members
+* Planning and UX/UI desigh vision for application
+* HTML design of game and leaderboard pages
+* Bootstrap feature selection for pages
+  * Grid, Cards, Navbar, Offcanvas toggle, Buttons
+* CSS for game and leaderboard pages
+* Front-end javascript for locking rows and hovering cards with styling
+* Front-end javascript for tracking player turn order
+* Initial file structure for application
+
 
 ## Corwin
 * Managed Github Issues and Branches
@@ -30,3 +40,4 @@
 * Login and signup request functions
 * Setup as NPM package
 * Created seeds.sql and edited table.sql
+
