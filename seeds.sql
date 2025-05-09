@@ -1,4 +1,5 @@
 -- Sample data for sql
+-- Emmannuel: Created this
 
 INSERT INTO user (username, password, wins, losses) 
 VALUES 

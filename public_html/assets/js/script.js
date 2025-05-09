@@ -12,6 +12,7 @@ let cards = document.querySelectorAll(".card");
 
 let selected_row = "";
 let current_row = "";
+// Corwin: lookup table
 const indexToRowTag = [undefined, "first_row", "second_row", "third_row", "fourth_row"];
 
 let cardStatus = () => {
@@ -177,6 +178,7 @@ const login = async (e) => {
     spinner.hidden = true;
 };
 
+// Corwin: written to work with other code in the front end
 function rowToIndex(row){
     switch(row){
         case "first_row":
@@ -196,6 +198,7 @@ function rowToIndex(row){
     }
 }
 
+// Corwin: does the front end logic to make a move in game
 async function makeMove(){
     let row = rowToIndex(current_row);
     let tiles = Array.from(cards);
@@ -255,6 +258,7 @@ async function makeMove(){
     }
 }
 
+// Corwin: ask server to reset game
 async function clientResetGame(){
     displayMove(0,0);
     const user1 = localStorage.getItem("player1Id");
@@ -273,6 +277,7 @@ async function clientResetGame(){
     turnToggleReset()
 }
 
+// Corwin: Front end GUI code
 function displayMove(row, amount) {
     console.log(`Removing ${amount} from row #${row}`);
     let tiles = Array.from(cards);

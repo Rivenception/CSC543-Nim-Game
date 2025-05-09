@@ -1,3 +1,5 @@
+// Corwin: I wrote this whole class, each instance represents a single game
+// Corwin: 'get' methods are getters. reset and move are instance methods
 class NimGame {
   #game = [1, 3, 5, 7];
   #moves = 0;
