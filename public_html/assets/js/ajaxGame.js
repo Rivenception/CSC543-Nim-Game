@@ -1,3 +1,6 @@
+// Corwin: I wrote this file
+// this contains ajax functions related to 'game' functions
+
 let ajax = new XMLHttpRequest();
 
 const move = async function (row, amount, user1, user2) {

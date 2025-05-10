@@ -26,3 +26,5 @@ const signup = async (e) => {
 
 const registerFormElement = document.getElementById("signup");
 registerFormElement.addEventListener("submit", signup);
+
+// Emmanuel

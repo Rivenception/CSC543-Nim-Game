@@ -3,7 +3,7 @@ const loginRequest = (user) => {
   if (username && password) {
     return fetch("/login", {
       method: "POST",
-      body: JSON.stringify({ username: username, password: password }),
+      body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
     });
   } else {
@@ -12,3 +12,4 @@ const loginRequest = (user) => {
 };
 
 export { loginRequest };
+// Emmanuel

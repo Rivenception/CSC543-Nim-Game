@@ -1,3 +1,6 @@
+// Corwin: I wrote this file
+// this performs a database hit to request statistics via ajax
+
 let ajax = new XMLHttpRequest();
 
 const getStatistics = async (e) => {

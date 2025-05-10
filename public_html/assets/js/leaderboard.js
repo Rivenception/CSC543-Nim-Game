@@ -1,3 +1,5 @@
+// Corwin: implement leaderboard population
+
 import { getStatistics } from "./ajaxLeaderboard.js";
 
 let tableBody = document.getElementById("table-body");

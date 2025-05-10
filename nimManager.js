@@ -1,3 +1,6 @@
+// Corwin: I wrote this script
+// This manages instances of NimGame from nim.js, associating instances with users
+
 const Nim = require("./nim.js");
 let games = [];
 

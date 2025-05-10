@@ -13,16 +13,21 @@ const databaseConfig = {
 // AJAX request handler functions //
 ////////////////////////////////////
 
+// Corwin: wrote this
 //Generic 404 error, AJAX edition
 exports.fof = function (body, res) {
   respond(res, 404, "application/json", body);
 };
-
-//Ajax request responder
+  
+// Emmanuel: helped here
+// home ajax request handler function
 exports.home = async function (body, res) {
   respond(res, 200, "application/json", body);
 };
 
+// Emmanuel: and here
+// Corwin: integrated the DB
+// expects username and password in body
 exports.signup = async function (body, res) {
   const {username, password} = JSON.parse(body);
   try {
@@ -34,6 +39,8 @@ exports.signup = async function (body, res) {
   }
 };
 
+// Corwin: wrote this
+// expects username and password in body
 exports.login = async function (body, res) {
   const { username, password } = JSON.parse(body);
   [[results]] = await getSignin(username, password);
@@ -44,7 +51,8 @@ exports.login = async function (body, res) {
   }
 };
 
-//Ajax request responder
+// Corwin: wrote this
+// no params expected in body
 exports.leaderboard = async function (body, res) {
   [results] = await getStatistics();
   console.log(results);
@@ -55,7 +63,8 @@ exports.leaderboard = async function (body, res) {
   }
 };
 
-// expects user1 and user2 id's
+// Corwin: wrote this
+// expects user1 and user2 id's in body
 exports.newGame = function (body, res) {
   const { user1: u1, user2: u2 } = JSON.parse(body);
   game = gameManager.newGame(u1, u2);
@@ -66,7 +75,8 @@ exports.newGame = function (body, res) {
   }
 }
 
-// expects user1 and user2 id's and row and amount
+// Corwin: wrote this
+// expects user1 and user2 id's and row and amount in body, makes a move in an existing game
 exports.moveGame = function (body, res) {
   const { user1: u1, user2: u2, row: r, amount: a } = JSON.parse(body);
   //console.log(u1, u2, r, a);
@@ -78,6 +88,8 @@ exports.moveGame = function (body, res) {
   }
 }
 
+// Corwin: wrote this
+// expects user1 and user2 in body, checks if the game between u1 and u2 is in a winning state
 exports.wonGame = function (body, res) {
   const { user1: u1, user2: u2 } = JSON.parse(body);
   let game = gameManager.getGame(u1, u2);
@@ -94,7 +106,8 @@ exports.wonGame = function (body, res) {
   }
 }
 
-// expects user1 and user2 id's
+// Corwin: wrote this
+// expects user1 and user2 id's, resets the game state
 exports.resetGame = function (body, res) {
   const { user1: u1, user2: u2 } = JSON.parse(body);
   success = gameManager.resetGame(u1, u2);
@@ -109,6 +122,7 @@ exports.resetGame = function (body, res) {
 // Responder Function //
 ////////////////////////
 
+// Corwin: wrote this
 // requires res and status, type and body optional
 function respond (res, status, type, body){
   console.log(`Sending ${status}`);
@@ -127,6 +141,7 @@ function respond (res, status, type, body){
 // Put database access functions down here                           //
 ///////////////////////////////////////////////////////////////////////
 
+// Corwin: wrote this
 async function insertUser (username, password) {
   database = await mysql.createConnection(databaseConfig);
   return database.query(
@@ -135,6 +150,7 @@ async function insertUser (username, password) {
   );
 }
 
+// Corwin: wrote this
 async function getSignin (username, password) {
   database = await mysql.createConnection(databaseConfig);
   return database.query(
@@ -143,6 +159,7 @@ async function getSignin (username, password) {
   );
 }
 
+// Corwin: wrote this
 async function dropUser (id) {
   database = await mysql.createConnection(databaseConfig);
   return database.query(
@@ -151,6 +168,7 @@ async function dropUser (id) {
   );
 }
 
+// Corwin: wrote this
 async function addWin (id) {
   database = await mysql.createConnection(databaseConfig);
   return database.query(
@@ -159,6 +177,7 @@ async function addWin (id) {
   );
 }
 
+// Corwin: wrote this
 async function addLoss (id) {
   database = await mysql.createConnection(databaseConfig);
   return database.query(
@@ -167,6 +186,7 @@ async function addLoss (id) {
   );
 }
 
+// Corwin: wrote this
 async function getStatistics () {
   database = await mysql.createConnection(databaseConfig);
   return database.query(

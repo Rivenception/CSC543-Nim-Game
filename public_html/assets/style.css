@@ -1,7 +1,10 @@
+/* Rick: contributed to all custom css minus the comments made by Corwin */
+
 body, html {
     height: 100%;
 }
 
+/* Corwin: I added this to make it so the rows don't shrink as cards are hidden */
 .row.justify-content-md-center {
     height: 160px;
 }
