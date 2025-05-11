@@ -6,7 +6,7 @@
   - Will install all packages listed in package.json (mysql2)
 
 #### Run the server
-- Create the "creds.js" file (or copy). It contains an object with MySql server credentials.
+- Create the "creds.js" file (or copy) in the root dir of the project. It contains an object with MySql server credentials.
   - "ajax.js" expects this file to exist with the module.exports being an object with attributes: "username", "password", "sqlHost"
 - sudo $(which node) server.js
 
