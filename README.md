@@ -6,6 +6,8 @@
   - Will install all packages listed in package.json (mysql2)
 
 #### Run the server
+- Create the "creds.js" file (or copy). It contains an object with MySql server credentials.
+  - "ajax.js" expects this file to exist with the module.exports being an object with attributes: "username", "password", "sqlHost"
 - sudo $(which node) server.js
 
 ## List of Functionality
@@ -13,7 +15,6 @@
 - Turns are counted and displayed on the page
 - Button to submit the card selection and pass the turn
 - An option to bring up an element with instructions
-    - A video/gif demo of how to play, to be included with instructions
 - A reset game button
 - A front-end script to manage the page
 - A separate module to manage the game state, could be front or back end
@@ -21,6 +22,5 @@
 - Added a sign up / sign in page
 - Added a score page
 - Created game state data structure \(int\[] for count of cards in row)
-    - Win state is all zeros
  
 
